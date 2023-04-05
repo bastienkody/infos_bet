@@ -1,0 +1,89 @@
+LIENS:
+
+--------------------
+NEXT MATCHS + COTE : 
+--------------------
+http://www.comparateur-de-cotes.fr/comparateur/
+
+--> on complete l'url par un des sports suivants :
+	- football
+	- tennis
+	- rugby
+	- basketball
+	- handball
+	- volleyball
+	- hockey sur glace
+	- boxe
+
+--> chaque sport se complete par une competition (ligue 1, Rolland-Garros etc)
+Les compets changent. On ne peut pas hardcode. On peut les recup sur le site : 
+
+curl -s http://www.comparateur-de-cotes.fr/comparateur/football | grep -o "<a href=\"comparateur/football/.*\"><"
+
+<a href="comparateur/football/Ligue-des-Nations-ed2195"><
+<a href="comparateur/football/Coupe-du-Monde-2023-(Qualif.-F)-ed1322"><
+<a href="comparateur/football/Matchs-amicaux-(F)-ed223"><
+<a href="comparateur/football/Ligue-des-Champions-ed7"><
+<a href="comparateur/football/Ligue-Europa-ed1181"><
+<a href="comparateur/football/France-Ligue-1-ed3"><
+<a href="comparateur/football/France-Ligue-2-ed9"><
+<a href="comparateur/football/Angleterre-Premier-League-ed2"><
+<a href="comparateur/football/Espagne-LaLiga-ed6"><
+<a href="comparateur/football/Allemagne-Bundesliga-ed4"><
+<a href="comparateur/football/Italie-Serie-A-ed5"><
+<a href="comparateur/football/Belgique-Jupiler-League-ed11"><
+<a href="comparateur/football/Suisse-Super-League-ed12"><
+<a href="comparateur/football/Portugal-Liga-NOS-ed15"><
+<a href="comparateur/football/Coupe-d'Allemagne-ed23"><
+<a href="comparateur/football/Angleterre-FA-Cup-ed22"><
+<a href="comparateur/football/Coupe-de-Belgique-ed269"><
+<a href="comparateur/football/Espagne-Coupe-du-Roi-ed46"><
+<a href="comparateur/football/Coupe-de-France-ed317"><
+<a href="comparateur/football/Coppa-Italia-ed90"><
+<a href="comparateur/football/Allemagne-Bundesliga-2-ed44"><
+<a href="comparateur/football/Angleterre-Championship-ed13"><
+<a href="comparateur/football/Autriche-Bundesliga-ed17"><
+<a href="comparateur/football/Bulgarie-Parva-Liga-ed55"><
+<a href="comparateur/football/Chypre-Division-1-ed65"><
+<a href="comparateur/football/Croatie-Division-1-ed62"><
+<a href="comparateur/football/Danemark-Superligue-ed26"><
+<a href="comparateur/football/Ecosse-Premier-League-ed120"><
+<a href="comparateur/football/Espagne-LaLiga-2-ed47"><
+<a href="comparateur/football/Estonie-Premium-Liiga-ed199"><
+<a href="comparateur/football/Finlande-Veikkausliiga-ed29"><
+<a href="comparateur/football/Hongrie-NB-1-ed141"><
+<a href="comparateur/football/Irlande-Premier-League-ed112"><
+<a href="comparateur/football/Irlande-Nord-Premiership-ed42"><
+<a href="comparateur/football/Islande-Premier-League-ed1123"><
+<a href="comparateur/football/Israel-Premier-League-ed75"><
+<a href="comparateur/football/Italie-Serie-B-ed14"><
+<a href="comparateur/football/Lettonie-Virsliga-ed253"><
+<a href="comparateur/football/Malte-Premier-Division-ed281"><
+<a href="comparateur/football/P.-de-Galles--Premier-League-ed137"><
+<a href="comparateur/football/Pays-Bas-Eredivisie-ed10"><
+<a href="comparateur/football/Pologne-Ekstraklasa-ed30"><
+<a href="comparateur/football/Portugal-Liga-2-ed53"><
+<a href="comparateur/football/Roumanie-Liga-1-ed54"><
+<a href="comparateur/football/Serbie-Superliga-ed220"><
+<a href="comparateur/football/Slovaquie-Liga-1-ed36"><
+<a href="comparateur/football/Turquie-Super-Lig-ed50"><
+<a href="comparateur/football/Ukraine-Premier-League-ed61"><
+<a href="comparateur/football/Argentine-Superliga-ed57"><
+<a href="comparateur/football/Etats-Unis-MLS-ed60"><
+<a href="comparateur/football/Japon-J-League-ed34"><
+<a href="comparateur/football/Maroc-Botola-Pro-ed558"><
+<a href="comparateur/football/Equateur-Serie-A-ed148"><
+<a href="comparateur/football/Copa-Libertadores-ed737"><
+<a href="comparateur/football/Paraguay-Primera-Division-ed250"><
+<a href="comparateur/football/Chili-Primera-Division-ed174"><
+<a href="comparateur/football/Algerie-Division-1-ed502"><
+<a href="comparateur/football/Mexico-Primera-A-ed109"><
+<a href="comparateur/football/Australie-A-League-ed74"><
+
+----------------
+RANKING TENNIS :
+----------------
+classement tennis : https://www.tennisendirect.net/atp/classement/
+
+--> on peut scrapper le ranking d'un joueur (ie. Daniel Elahi) : 
+curl -s https://www.tennisendirect.net/atp/classement/ | sed s/"<tr"/\\n/g | grep -i "Daniel Elahi" | egrep -o "class=\"w20\">[0-9]{1,3}" | cut -d'>' -f2
