@@ -44,3 +44,7 @@ do
 		i=$(($i+1))
 	done
 done
+
+#PAS BESOIN DE CURL A CHAQUE FOIS FAIRE UNE SEULE REQ DE TENNISDIRECT PUIS GREP DESSUS
+#classement hommes vs femmes
+#exterioriser le ranking pour mieux gerer si pas trouve etc
