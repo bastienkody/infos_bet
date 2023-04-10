@@ -4,7 +4,7 @@ sport_name=tennis
 
 # get compets
 req=$(curl -i -s http://www.comparateur-de-cotes.fr/comparateur/$sport_name)
-code=$(echo $req | egrep "^HTTP" | egrep -o "[0-9]{3}")
+code=$(echo $req | egrep -m1 "^HTTP" | egrep -o "[0-9]{3}")
 [[ -z $code ]] && echo "Erreur requete : pas de code retour" && exit 3
 [[ $(echo $code) != 200 ]] && echo "Erreur requete code : $code" && exit 4
 #echo $req
@@ -22,4 +22,7 @@ do
 	[[ $(echo $code) != 200 ]] && echo "Erreur requete code : $code" && exit 6
 done
 
+
+echo "\033[1;43m$sport_name\033[m" 
+./2_tennis.sh
 
