@@ -82,8 +82,3 @@ __: Classement hommes vs femmes : il faut savoir le sexe avant cette requete
 --------------------------------------------------------------------
 PB nom de joueur tennis du comparateur vs classement tennis direct :
 --------------------------------------------------------------------
-- compareteur			-> Classement ATP
-- Diego Schwartzman		-> Diego Sebastian Schwartzman
-- Roberto Bautista-Agut	-> Roberto Bautista Agut
-- Francis Tiafoe		-> Frances Tiafoe
-- Stanislas Wawrinka	-> Stan Wawrinka
