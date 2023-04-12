@@ -24,4 +24,4 @@ done
 
 echo "\033[1;43m$sport_name\033[m" && exit
 
-#./tennis/2_tennis.sh $compets_name
+./football/2_football.sh $compets_name

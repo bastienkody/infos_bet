@@ -1,6 +1,6 @@
 function hexascii_to_deci()
 {
-	ref_file=tennis/hex_ascii_html.txt
+	ref_file=utils/hex_ascii_html.txt
 	deci=""
 	char_nb=$(echo $first_cote | grep -o ";" | wc -l | tr -d "[:blank:]")
 	j=1

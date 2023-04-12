@@ -1,0 +1,23 @@
+---------------------
+CLASSEMENT FOOTBALL : 
+---------------------
+
+--> site
+// https://www.foot-direct.com/
+--> main page des classements
+// https://www.foot-direct.com/classement
+
+--> on choppe les compets (se terminent par tabStandings):
+// curl -is https://www.foot-direct.com/classement | egrep "href.*#tabStandings\" >" | grep -o "\".*\"" | tr -d "\""
+
+--> on les requete toutes reconstruisant l'url
+// https://www.foot-direct.com + /france/ligue-1/#tabStandings
+
+--> pour chaque compets on recup le CLASSEMENT
+__: il est dans un t_body, le 3eme de la page (a rechecker)
+__: on recupere jusquau 3e tbody, on demande entre 800-1000 lignes en dessous (depend du nombre d'equipe dans la compet)
+// grep -m3 -A 1000 "<tbody>" | tail -n 1000
+__: le 4eme tbody presente aussi des rank (saisons precedentes), il ne faut pas les prendre
+__: pour ca on va supprimer tout ce qui se trouve apres le </tbody> correspondant au 3e tbody
+// grep -m3 -A 1000 "<tbody>" | tail -n 1000 | sed -n '/<\/tbody/q;p'
+

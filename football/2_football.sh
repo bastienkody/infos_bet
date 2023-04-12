@@ -1,7 +1,7 @@
 #! /bin/zsh
 
-source tennis/tennis_utils.sh
-sport_name=tennis
+source football_utils.sh
+sport_name=football
 
 max_cote=1.35
 compets_name+=($(echo $1))
@@ -24,27 +24,18 @@ do
 		match_time=$(echo $single_match | egrep -o "[A-Z]?[a-z]{4,7}[ ]*[0-9]{1,2}[ ]*[a-z]{3,9}[ ]*[0-9]{4}[ ]*&agrave;[ ]*[0-9]{2}h[0-9]{2}" | sed s'/&agrave;//g' | tr -s " ")
 		echo $match_time
 		# bets
-		betclic_lines=$(echo $single_match | grep -A 8 "trout.*betclic" | egrep -A 1 "<td class=(\"bet highlight|\"bet )")
+		betclic_lines=$(echo $single_match | grep -A 13 "trout.*betclic" | egrep -A 1 "<td class=(\"bet highlight|\"bet )")
 		first_cote=$(echo $betclic_lines | egrep -m1 -A 1 "<td class=(\"bet highlight|\"bet )" | tail -n 1 | tr -d "[:blank:]")
-		second_cote=$(echo $betclic_lines | egrep -A 1 "<td class=(\"bet highlight|\"bet )" | tail -n 1 | tr -d "[:blank:]")
+		second_cote=$(echo $betclic_lines | egrep -m2 -A 1 "<td class=(\"bet highlight|\"bet )" | tail -n 1 | tr -d "[:blank:]")
+		third_cote=$(echo $betclic_lines | egrep -A 1 "<td class=(\"bet highlight|\"bet )" | tail -n 1 | tr -d "[:blank:]")
 		first_cote=$(hexascii_to_deci)
 		print_colorz_bet
-		# players with ranking
-		players=$(echo $single_match | grep "<a class=\"otn\"" | grep -o ">.*<" | tr -d "<>")
-		pl1=$(echo $players | sed '1p;d')
-		pl2=$(echo $players | sed '2p;d') 
-		if [[ $(echo $compet | grep -i "double" ) ]] ;
-		then
-			pl1_bis=$(echo $pl1 | cut -d'&' -f2) ; pl1=$(echo $pl1 | cut -d'&' -f1)
-			pl2_bis=$(echo $pl2 | cut -d'&' -f2) ; pl2=$(echo $pl2 | cut -d'&' -f1)
-			echo "$pl1 - ranked $(get_rank $pl1)"
-			echo "$pl1_bis - ranked $(get_rank $pl1_bis)"
-			echo "$pl2 - ranked $(get_rank $pl2)"
-			echo "$pl2_bis - ranked $(get_rank $pl2_bis)"
-		else
-			echo "$pl1 - ranked $(get_rank $pl1)"
-			echo "$pl2 - ranked $(get_rank $pl2)"
-		fi	
+		# team with ranking
+		teams=$(echo $single_match | grep "<a class=\"otn\"" | grep -o ">.*<" | tr -d "<>")
+		team_1=$(echo $teams | sed '1p;d')
+		team_2=$(echo $teams | sed '2p;d') 
+		echo "$team1 - ranked $(get_rank $pl1)"
+		echo "$team2 - ranked $(get_rank $pl2)"
 		echo "----------------------------------"
 		i=$(($i+1))
 	done
