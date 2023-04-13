@@ -75,10 +75,7 @@ __: la deuxieme cote est ecrite en digit decimal : 1.18
 RANKING TENNIS :
 ----------------
 classement tennis : https://www.tennisendirect.net/atp/classement/
-
 --> on peut scrapper le ranking d'un joueur (ie. Daniel Elahi) : 
 curl -s https://www.tennisendirect.net/atp/classement/ | sed s/"<tr"/\\n/g | grep -i "Daniel Elahi" | egrep -o "class=\"w20\">[0-9]{1,3}" | cut -d'>' -f2
 __: Classement hommes vs femmes : il faut savoir le sexe avant cette requete
---------------------------------------------------------------------
-PB nom de joueur tennis du comparateur vs classement tennis direct :
---------------------------------------------------------------------
+__: Classement doulbe et femmes et femmes doubles a integrer 
