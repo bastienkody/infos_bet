@@ -5,8 +5,10 @@ scrap infos about bets for testing a safe betting strategy
 infos in format "sportname=yx.xx" (x and y digits, y is optional)
 
 ## Outfile :
-in launch.sh, assign the outfile variable
+In launch.sh, assign the outfile variable
+
 ie: `outfile=result.txt` for result.txt
+
 ie: `outfile=/dev/stdout` for terminal screen
 
 ## Start the script : 
