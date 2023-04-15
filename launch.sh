@@ -1,10 +1,8 @@
 #! /bin/zsh
 
-#fichier des max cotes
-[[ -e ~/.max_cote_infos_bet.txt ]] || {echo "No file \"~/.max_cote_infos_bet.txt\"" && exit 3}
+source config_infos_bet.txt
 
-# fichier de sortie - mettre "/dev/stdout" pour le terminal
-outfile=result.txt
+[[ -z $outfile ]] && echo "Specify outfile in config_infos_bet.txt (/dev/stdout for none)" && exit 3
 
 # print intro
 echo "------------------------------------" > $outfile
@@ -12,6 +10,8 @@ echo "------------------------------------" >> $outfile
 echo "\tSCRIPT INFOS_BET" >> $outfile
 echo "Started at $(date +%R) - $(date +"%d %B %Y")" >> $outfile
 echo "by $USER on $(uname -sm) $DESKTOP_SESSION" >> $outfile 
+echo "outfile : $outfile" >> $outfile
+echo "max odds : $(cat config_infos_bet.txt | grep football) $(cat config_infos_bet.txt | grep tennis) "
 echo "------------------------------------" >> $outfile
 echo "------------------------------------\n" >> $outfile
 

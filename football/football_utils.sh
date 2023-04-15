@@ -16,8 +16,9 @@ function hexascii_to_deci()
 
 function print_colorz_bet()
 {
-	if [[ $first_cote -le $max_cote ]] || [[ $second_cote -le $max_cote ]] || [[ $third_cote -le $max_cote ]] ;
-	then
+	if [[ -z $max_cote ]] ; then
+		echo "\033[m$first_cote - $second_cote - $third_cote\033[m" >> $outfile	
+	elif [[ $first_cote -le $max_cote ]] || [[ $second_cote -le $max_cote ]] || [[ $third_cote -le $max_cote ]] ; then
 		echo "\033[42m$first_cote - $second_cote - $third_cote\033[m" >> $outfile
 	else
 		echo "\033[41m$first_cote - $second_cote - $third_cote\033[m" >> $outfile

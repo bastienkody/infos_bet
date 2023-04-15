@@ -14,8 +14,9 @@ function hexascii_to_deci()
 
 function print_colorz_bet()
 {
-	if [[ $first_cote -le $max_cote ]] || [[ $second_cote -le $max_cote ]] ;
-	then
+	if [[ -z $max_cote ]] ; then
+		echo "\033[m$first_cote - $second_cote \033[m" >> $outfile
+	elif [[ $first_cote -le $max_cote ]] || [[ $second_cote -le $max_cote ]] ; then
 		echo "\033[42m$first_cote - $second_cote \033[m" >> $outfile
 	else
 		echo "\033[41m$first_cote - $second_cote \033[m" >> $outfile
@@ -39,5 +40,5 @@ function get_rank
 {
 	cat $name_err | grep -q -i $1 && 1=$(cat $name_err | grep -i $1 | cut -d'>' -f2)
 	res=$(echo $ranking_men_data | sed s/"<tr"/\\n/g | sed s/"<img.*\/>"//g | grep -i -m1 "$1" | egrep -o "class=\"w20\">[0-9]{1,3}" | cut -d'>' -f2 | uniq)
-	[[ -z $res ]] && echo "NO RANKING FOUND" || echo $res
+	[[ -z $res ]] && echo "not found" || echo $res
 }

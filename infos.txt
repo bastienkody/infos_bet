@@ -1,7 +1,3 @@
---> instructions
-// code
-__: remarques
-
 ------------------------
 | NEXT MATCHS + COTE : |
 ------------------------
@@ -17,10 +13,9 @@ http://www.comparateur-de-cotes.fr/comparateur/
 	- hockey sur glace
 	- boxe
 
-
---------
-TENNIS :
---------
+------------------
+| TENNIS REQUETE :
+------------------
 --> chaque sport se complete par une competition (ligue 1, Rolland-Garros etc)
 Les compets changent. On ne peut pas hardcode. On peut les recup sur le site : 
 // curl -s http://www.comparateur-de-cotes.fr/comparateur/tennis | grep -o "<a href=\"comparateur/tennis/.*\"><"
@@ -71,11 +66,22 @@ __: la premiere cote est ecrite en ascii hexa avec preffixe "&#x" et suffixe ";"
 	il faut la convertir. fichier "hex_ascii_html.txt" can help
 __: la deuxieme cote est ecrite en digit decimal : 1.18
 
-----------------
-RANKING TENNIS :
-----------------
+------------------
+| RANKING TENNIS :
+------------------
 classement tennis : https://www.tennisendirect.net/atp/classement/
 --> on peut scrapper le ranking d'un joueur (ie. Daniel Elahi) : 
 curl -s https://www.tennisendirect.net/atp/classement/ | sed s/"<tr"/\\n/g | grep -i "Daniel Elahi" | egrep -o "class=\"w20\">[0-9]{1,3}" | cut -d'>' -f2
-__: Classement hommes vs femmes : il faut savoir le sexe avant cette requete
+__: Classement hommes vs femmes : savoir le sexe avant requete
 __: Classement doulbe et femmes et femmes doubles a integrer 
+
+---------------------
+| CONFIG & LAUNCHER : 
+---------------------
+__: outfile (file or stdout)
+__: max cote per sport ; if empty print no color
+TO DO
+__: max date : only print match prior to. use epoch format 
+__:  sport : only print related match
+__: options over config file? (-d for max date, -o for outfile, -m for max cote)
+

@@ -1,25 +1,24 @@
 # Infos_bet
-Scrap infos about bets for testing a safe betting strategy
+Scrap infos about sports bets
 
-## Max cote
-A file ".max_cote_infos_bet.txt" is needed in home repo (~/)
+## Config file
+Outfile (mandatory) and max accepted odds (optional) are specified in "config_infos_bet.txt" 
 
-It stores infos in format "sportname=yx.xx" (x and y digits, y is optional)
+Outfile: modify the variable
+`outfile=result.txt` for result.txt as outfile
+`outfile=/dev/stdout` for terminal screen (no outfile)
 
-## Outfile
-In launch.sh, assign the outfile variable
-
-ie: `outfile=result.txt` for result.txt as outfile
-
-ie: `outfile=/dev/stdout` for terminal screen (no outfile)
+Max odds: sportname=xx.xx (x and y digits)
+`football=1.90` green print football matches with odds under 1.90
+`tennis=1.50`
 
 ## Start the script 
 `./launch.sh`
 
 ## Results format
-Sport -> nb matchs in competition -> all matchs : Date, teams and cotes
+Sport -> nb matchs in competition -> all matchs infos : date, teams and odds
 
-Cotes are green or red according to the max cote limit per sport
+Odds are colored green or red according to the max odds limit per sport
 
 Color code according to rank is not yet available
 

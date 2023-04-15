@@ -1,0 +1,9 @@
+# outfile (/dev/stdout by default)
+outfile=/dev/stdout
+
+# max odds (for colorization)
+football=1.70
+tennis=2.54
+
+# max date (format : "Lundi 12 Avril 2023 14h34")
+date_max=""

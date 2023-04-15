@@ -6,7 +6,7 @@ outfile=$2
 
 sport_name=tennis
 
-max_cote=$(cat ~/.max_cote_infos_bet.txt | grep -ia $sport_name | cut -d'=' -f2)
+max_cote=$(cat config_infos_bet.txt | grep -ia $sport_name | cut -d'=' -f2)
 
 compets_name+=($(echo $1))
 
@@ -14,9 +14,9 @@ compets_name+=($(echo $1))
 for compet in $compets_name ;
 do
 	cat $sport_name/req_$compet | egrep -q "<table class=\"bettable\"" || {echo "pas de bet_table pour $sport_name et $compet" >> $outfile && continue}
-	nb_match=$(cat $sport_name/req_$compet | egrep -a "<tr style=\"background-color:white\"" | wc -l)
+	nb_match=$(cat $sport_name/req_$compet | egrep -a "<tr style=\"background-color:white\"" | wc -l | tr -d "[:blank:]")
 	[[ $(echo "$nb_match") -lt 1 ]] && echo "pas de match pour $compet" >> $outfile && continue
-	echo "\033[1;44m$nb_match matchs pour $compet\033[m" >> $outfile
+	echo "\033[1;44m$compet ($nb_match)\033[m" >> $outfile
 	echo "----------------------------------" >> $outfile
 	all_match_infos=$(cat $sport_name/req_$compet | egrep -a -A 30 "<td width=\"330\" class=\"maincol ")
 	i=1
